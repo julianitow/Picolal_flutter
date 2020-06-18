@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:picolal/ApiServices.dart';
 import 'package:picolal/Category.dart';
 import 'package:picolal/Rule.dart';
+import 'package:picolal/Home.dart';
 import 'dart:math';
 
 class DrunkView extends StatefulWidget {
@@ -69,8 +70,12 @@ class _DrunkViewState extends State<DrunkView> {
     });
   }
 
-  void changePlayer() {
-
+  void _goToHomeView(BuildContext context){
+    Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => MyHomePage(),
+        ),
+      );
   }
 
   @override
@@ -123,6 +128,9 @@ class _DrunkViewState extends State<DrunkView> {
                                         width: 70,
                                         height: 70,
                                         child: GestureDetector(
+                                          onTap: () => {
+                                            this._goToHomeView(context)
+                                          },
                                           child: Container(
                                             //color: Colors.orange,
                                               child: Image.asset('assets/quit_button.png')
