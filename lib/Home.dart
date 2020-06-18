@@ -37,27 +37,33 @@ class _MyHomePageState extends State<MyHomePage> {
       DeviceOrientation.portraitUp
     ]);
     () async {
+      // ignore: unnecessary_statements
       await _showMyDialog();
     };
   }
 
   void _goToCategoriesView(BuildContext context) {
-    if(player1.text != "")
-      players.add(player1.text);
-    if(player2.text != "")
-      players.add(player2.text);
-    if(player3.text != "")
-      players.add(player3.text);
-    if(player4.text != "")
-      players.add(player4.text);
-    if(player5.text != "")
-      players.add(player5.text);
 
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => CategoriesView(players),
-      ),
-    );
+    if(player1.text == "" && player2.text == "" && player3.text == "" && player4.text == "" && player5.text == "") {
+      print("Aucun joueur.");
+    } else {
+      if (player1.text != "")
+        players.add(player1.text);
+      if (player2.text != "")
+        players.add(player2.text);
+      if (player3.text != "")
+        players.add(player3.text);
+      if (player4.text != "")
+        players.add(player4.text);
+      if (player5.text != "")
+        players.add(player5.text);
+
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => CategoriesView(players),
+        ),
+      );
+    }
   }
 
   Future<void> _showMyDialog() async {
