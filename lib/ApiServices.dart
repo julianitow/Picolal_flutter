@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 class ApiServices {
 
-  static const String endpoint = "http://lil-nas.ddns.net:8080/api/";
+  static const String endpoint = "http://lil-nas:8080/api/";
 
   static Future<List<Category>> getCategories() async {
       final res = await http.get(endpoint + "categories");

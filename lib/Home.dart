@@ -166,7 +166,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             Container(
-              height: MediaQuery.of(context).size.height * 0.53,
+              height: MediaQuery.of(context).size.height * 0.52,
               alignment: Alignment.bottomCenter,
               padding: EdgeInsets.only(bottom: 10, left: 35, right: 35),
               child: Stack(
