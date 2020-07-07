@@ -45,7 +45,6 @@ class _MyHomePageState extends State<MyHomePage> {
   void _goToCategoriesView(BuildContext context) {
 
     if(player1.text == "" && player2.text == "" && player3.text == "" && player4.text == "" && player5.text == "") {
-      print("Aucun joueur - > _showPlayerAlert().");
       this._showPlayerAlert();
     } else {
       if (player1.text != "")
@@ -101,11 +100,11 @@ class _MyHomePageState extends State<MyHomePage> {
       barrierDismissible: false, // user must tap button!
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Erreur'),
+          title: Text('Solo ?'),
           content: SingleChildScrollView(
             child: ListBody(
               children: <Widget>[
-                Text('Une erreur est survenue'),
+                Text('Vous ne pouvez jouer sans joueur ;)'),
                 Text('Vous devez entrer au moins un joueur.'),
               ],
             ),

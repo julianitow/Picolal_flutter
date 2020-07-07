@@ -11,11 +11,14 @@ class CategoryCard extends StatelessWidget {
   const CategoryCard({Key key, this.category, this.players}) : super(key: key);
 
   void _goToDrunkView(BuildContext context) {
-    Navigator.of(context).push(
-      MaterialPageRoute(
-        builder: (BuildContext context) => DrunkView(this.category, this.players),
-      ),
-    );
+    ApiServices.getRulesByCat(this.category).then((rules) {
+      print(rules.toString());
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (BuildContext context) => DrunkView(this.category, this.players, rules),
+        ),
+      );
+    });
   }
 
   @override
