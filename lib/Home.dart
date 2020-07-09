@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:picolal/CategoriesView.dart';
 import 'package:flutter/services.dart';
+import 'package:picolal/FavoritesView.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -64,6 +65,14 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       );
     }
+  }
+
+  void _goToFavoritesView(BuildContext context){
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (BuildContext context) => FavoritesView()
+      )
+    );
   }
 
   Future<void> _showMyDialog() async {
@@ -209,22 +218,33 @@ class _MyHomePageState extends State<MyHomePage> {
                     alignment: Alignment.bottomLeft,
                     child: FloatingActionButton(
                       heroTag: "button1",
+                      tooltip: 'Mes favoris',
+                      child: Icon(Icons.star, color: Colors.amber,),
+                      onPressed: () async {
+                        this._goToFavoritesView(context);
+                      },
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.bottomCenter,
+                    child: FloatingActionButton(
+                      heroTag: "button2",
                       tooltip: 'Ajouter joueur',
                       child: Icon(Icons.add),
                       onPressed: () async {
-                        
+
                       },
                     ),
                   ),
                   Align(
                     alignment: Alignment.bottomRight,
                     child: FloatingActionButton(
-                      heroTag: "button2",
+                      heroTag: "button3",
                       tooltip: 'Se la mettre',
                       onPressed: () => {
                         this._goToCategoriesView(context)
                       },
-                      child: Icon(Icons.play_arrow),
+                      child: Icon(Icons.play_arrow, color: Colors.lightGreenAccent),
                     ),
                   ),
                 ],

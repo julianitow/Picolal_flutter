@@ -6,6 +6,7 @@ import 'package:picolal/Rule.dart';
 import 'package:picolal/Home.dart';
 import 'dart:math';
 import 'package:picolal/Database_helper.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class DrunkView extends StatefulWidget {
   final Category category;
@@ -20,7 +21,6 @@ class DrunkView extends StatefulWidget {
 
 class _DrunkViewState extends State<DrunkView> {
 
-  //List<Rule> rules = [];
   int currentIndex;
   String currentPlayer;
   List<String> players;
@@ -47,6 +47,7 @@ class _DrunkViewState extends State<DrunkView> {
       DeviceOrientation.landscapeRight,
       DeviceOrientation.landscapeLeft,
     ]);
+    this._delete();
   }
 
   void initRules(List<Rule> rules){
@@ -85,15 +86,48 @@ class _DrunkViewState extends State<DrunkView> {
       );
   }
 
-  void insertDb() async{
+  void _delete() async {
+    // Assuming that the number of rows is the id for the last row.
+    final id = await db.queryRowCount();
+    for(int i = 1 ; i <= id ; i++){
+      final rowsDeleted = await db.delete(i);
+      print('deleted $rowsDeleted row(s): row $i');
+    }
+  }
+
+  void insertDb(Rule rule) async{
+    bool exists = false;
+    Color color = Colors.green;
+    String toastmsg = rule.name + " added to favorites";
+    final allRows = await db.queryAllRows();
+    allRows.forEach((row) => {
+      if(row["name"] == rule.name){
+        exists = true
+      }
+    });
     // row to insert
-    Map<String, dynamic> row = {
-      DatabaseHelper.columnName : 'FirstRule',
-      DatabaseHelper.columnContent : 'This is the first rule',
-      DatabaseHelper.columnDrinks : 1
-    };
-    final id = await this.db.insert(row);
-    print('inserted row id: $id');
+    if(!exists){
+      Map<String, dynamic> row = {
+        DatabaseHelper.columnName : rule.name,
+        DatabaseHelper.columnContent : rule.content,
+        DatabaseHelper.columnDrinks : rule.drinks
+      };
+      final id = await this.db.insert(row);
+      print('inserted row id: $id');
+    } else {
+      color =Colors.orange;
+      toastmsg = rule.name + " already added to favorites";
+    }
+
+    Fluttertoast.showToast(
+        msg: toastmsg,
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: color,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
   }
 
   @override
@@ -218,7 +252,7 @@ class _DrunkViewState extends State<DrunkView> {
                                   children: <Widget>[
                                     GestureDetector(
                                       onTap: () => {
-                                        this.insertDb()
+                                        this.insertDb(widget.rules[this.currentIndex])
                                       },
                                       child: Column(
                                         crossAxisAlignment: CrossAxisAlignment.start,

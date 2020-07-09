@@ -13,11 +13,13 @@ class CategoryCard extends StatelessWidget {
   void _goToDrunkView(BuildContext context) {
     ApiServices.getRulesByCat(this.category).then((rules) {
       print(rules.toString());
-      Navigator.of(context).push(
-        MaterialPageRoute(
-          builder: (BuildContext context) => DrunkView(this.category, this.players, rules),
-        ),
-      );
+      if(rules.isNotEmpty){
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (BuildContext context) => DrunkView(this.category, this.players, rules),
+          ),
+        );
+      }
     });
   }
 
