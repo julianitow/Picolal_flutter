@@ -26,6 +26,12 @@ class _FavoritesViewState extends State<FavoritesView> {
     return rules;
   }
 
+  void callback(){
+    setState(() {
+
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,7 +56,7 @@ class _FavoritesViewState extends State<FavoritesView> {
                           child: ListView.builder(
                             itemCount: this.rules.length,
                             itemBuilder: (context, index){
-                              return RuleCard(rule: this.rules[index]);
+                              return RuleCard(rule: this.rules[index], callback: this.callback);
                             },
                           ),
                         );

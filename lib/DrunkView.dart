@@ -181,7 +181,7 @@ class _DrunkViewState extends State<DrunkView> {
                                     "${widget.rules[this.currentIndex].name}",
                                     style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: 50,
+                                      fontSize: 40,
                                     ),
                                   ),
                                 )
@@ -225,10 +225,7 @@ class _DrunkViewState extends State<DrunkView> {
                         ),
                         Row(
                           children: <Widget>[
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.9,
-                              height: MediaQuery.of(context).size.height * 0.3,
-                              alignment: Alignment.center,
+                            Flexible(
                               child: Text(
                                 '${widget.rules[this.currentIndex].content}',
                                 style: TextStyle(
@@ -244,6 +241,7 @@ class _DrunkViewState extends State<DrunkView> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
                             Container(
+
                                 width: MediaQuery.of(context).size.width * 0.9,
                                 height: MediaQuery.of(context).size.height*0.25,
                                 alignment: Alignment.bottomLeft, padding: EdgeInsets.only(left: 10),

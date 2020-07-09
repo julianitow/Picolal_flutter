@@ -7,7 +7,8 @@ import 'package:picolal/Database_helper.dart';
 
 class RuleCard extends StatefulWidget {
   Rule rule;
-  RuleCard({Key key, this.rule }) : super(key: key);
+  Function callback;
+  RuleCard({Key key, this.rule, this.callback }) : super(key: key);
 
   @override
   _RuleCardState createState() => _RuleCardState();
@@ -59,10 +60,9 @@ class _RuleCardState extends State<RuleCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: 20, bottom: 30),
+                Flexible(
                   child: Text(widget.rule.content,
-                      style: TextStyle(fontSize: 15),
+                      style: TextStyle(fontSize: 10),
                       textAlign: TextAlign.center
                   ),
                 )
@@ -81,8 +81,9 @@ class _RuleCardState extends State<RuleCard> {
                       Align(
                         alignment: Alignment.bottomLeft,
                         child: GestureDetector(
-                          onTap: () => {
-                            this._delete()
+                          onTap: () {
+                            this._delete();
+                            widget.callback();
                           },
                           child: Container(
                             child: Icon(Icons.delete_outline, color: Colors.red,),
