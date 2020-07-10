@@ -39,7 +39,7 @@ class _RuleCardState extends State<RuleCard> {
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
           borderRadius: BorderRadius.circular(3),
-          color: Colors.amber
+          color: Colors.lightBlue
         ),
         margin: EdgeInsets.only(top: 10, left: 40, right: 40),
         child: Column(
@@ -47,11 +47,10 @@ class _RuleCardState extends State<RuleCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(top: 10),
+                Flexible(
                   child: Text(
                     widget.rule.name,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Colors.white),
                     textAlign: TextAlign.center
                   ),
                 )
@@ -92,7 +91,24 @@ class _RuleCardState extends State<RuleCard> {
                       ),
                       Align(
                         alignment: Alignment.bottomRight,
-                        child: Text(widget.rule.drinks.toString()),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Text(
+                              widget.rule.drinks.toString(),
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.white
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.only(left: 5),
+                                width: 18,
+                                child: Image.asset("assets/drink_bg.png")
+                            )
+                          ],
+                        ),
                       )
                     ],
                   ),

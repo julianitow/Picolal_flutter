@@ -171,21 +171,16 @@ class _DrunkViewState extends State<DrunkView> {
                                 ),
                               ],
                             ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.center,
-                              mainAxisAlignment: MainAxisAlignment.start,
-                              children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.only(top: 10),
+                            Expanded(
+                              child: Center(
                                   child: Text(
                                     "${widget.rules[this.currentIndex].name}",
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 40,
-                                    ),
+                                    ), textAlign: TextAlign.center,
                                   ),
                                 )
-                              ],
                             ),
                             Column(
                               mainAxisAlignment: MainAxisAlignment.start,
@@ -231,7 +226,7 @@ class _DrunkViewState extends State<DrunkView> {
                                 style: TextStyle(
                                   color: Colors.white,
                                   fontSize: 15,
-                                ),
+                                ), textAlign: TextAlign.center,
                               ),
                             )
                           ],
