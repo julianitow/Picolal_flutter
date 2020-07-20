@@ -51,14 +51,20 @@ class _FavoritesViewState extends State<FavoritesView> {
                     builder: (context, snapshot){
                       if(snapshot.hasData){
                         this.rules = snapshot.data;
+                        if(this.rules.length != 0) {
+                          return Container(
+                            height: MediaQuery.of(context).size.height * 0.6,
+                            child: ListView.builder(
+                              itemCount: this.rules.length,
+                              itemBuilder: (context, index){
+                                return RuleCard(rule: this.rules[index], callback: this.callback);
+                              },
+                            ),
+                          );
+                        }
                         return Container(
                           height: MediaQuery.of(context).size.height * 0.6,
-                          child: ListView.builder(
-                            itemCount: this.rules.length,
-                            itemBuilder: (context, index){
-                              return RuleCard(rule: this.rules[index], callback: this.callback);
-                            },
-                          ),
+                          child: Text("Pas de règle ajoutée aux favoris", textAlign: TextAlign.center),
                         );
                       } else {
                         return Text("NO DATA");

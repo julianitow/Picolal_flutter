@@ -61,7 +61,7 @@ class _RuleCardState extends State<RuleCard> {
               children: <Widget>[
                 Flexible(
                   child: Text(widget.rule.content,
-                      style: TextStyle(fontSize: 10),
+                      style: TextStyle(fontSize: 15),
                       textAlign: TextAlign.center
                   ),
                 )

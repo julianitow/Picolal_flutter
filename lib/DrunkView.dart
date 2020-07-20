@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:picolal/ApiServices.dart';
@@ -183,7 +184,6 @@ class _DrunkViewState extends State<DrunkView> {
                                 )
                             ),
                             Column(
-                              mainAxisAlignment: MainAxisAlignment.start,
                               children: <Widget>[
                                 Container(
                                     width: 70,
@@ -206,7 +206,7 @@ class _DrunkViewState extends State<DrunkView> {
                           children: <Widget>[
                             Container(
                               width: MediaQuery.of(context).size.width * 0.9,
-                              height: MediaQuery.of(context).size.height*0.2,
+                              height: MediaQuery.of(context).size.height * 0.2,
                               alignment: Alignment.center,
                               child: Text(
                                 '${this.currentPlayer}',
@@ -219,6 +219,8 @@ class _DrunkViewState extends State<DrunkView> {
                           ],
                         ),
                         Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Flexible(
                               child: Text(
@@ -236,9 +238,8 @@ class _DrunkViewState extends State<DrunkView> {
                           crossAxisAlignment: CrossAxisAlignment.end,
                           children: <Widget>[
                             Container(
-
                                 width: MediaQuery.of(context).size.width * 0.9,
-                                height: MediaQuery.of(context).size.height*0.25,
+                                height: MediaQuery.of(context).size.height * 0.45,
                                 alignment: Alignment.bottomLeft, padding: EdgeInsets.only(left: 10),
                                 child: Row(
                                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
